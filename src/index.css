@@ -1,13 +1,106 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* flip and rotation */
+.body1 {
+  display: grid;
+  place-items: center;
+  padding: 0px 32px;
+  height: 60vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.rotate-point {
+  position: relative;
+  width: 100%;
+  /* height: 10px; */
+  perspective: 350px;
+}
+
+.mainRotating {
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateX(10deg);
+  animation: rotate 4s infinite linear;
+}
+.cell {
+  /* position: absolute; */
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: white;
+  transform-origin: center;
+  text-transform: uppercase;
+  backface-visibility: visible;
+}
+
+.card1 {
+  position: absolute;
+  /* color: #dfff00; */
+}
+.card2 {
+  position: relative;
+  /* color: white; */
+  /* animation: rotate2 infinite linear; */
+}
+
+/* @keyframes rotate {
+ 100% {
+  transform: rotateX(360deg);
+ }
+} */
+/* @keyframes rotate {
+ 0%,
+ 30% {
+  transform: rotateX(0);
+  background: #000;
+ }
+ 35%,
+ 45% {
+  transform: rotateX(180deg);
+  background: #000;
+ }
+ 50%,
+ 80% {
+  transform: rotateX(360deg);
+  background: #000;
+ }
+ 85%,
+ 95% {
+  transform: rotateX(360deg);
+  background: #000;
+ }
+ 100% {
+  transform: rotateX(360deg);
+  background: #000;
+ }
+} */
+@keyframes rotate {
+  0% {
+    transform: rotateX(0deg); /* Front side */
+  }
+  25% {
+    transform: rotateX(0deg); /* Pause at front side */
+  }
+  50% {
+    transform: rotateX(180deg); /* Back side */
+  }
+  75% {
+    transform: rotateX(180deg); /* Pause at back side */
+  }
+  100% {
+    transform: rotateX(360deg); /* Full rotation */
+  }
+}
+
+/* @keyframes rotate2 {
+ 0% {
+  transform: rotateX(-180deg);
+ }
+} */
+.mainRotating .cell:nth-child(1) {
+  transform: rotateX(0deg) translateZ(20px);
+}
+
+.mainRotating .cell:nth-child(2) {
+  transform: rotateX(180deg) translateZ(50px);
 }
